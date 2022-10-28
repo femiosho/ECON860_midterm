@@ -2,8 +2,8 @@ import requests
 import os
 
 #Create a file to store the html data
-if not os.path.exists("html_files"):
-    os.mkdir("html_files")
+if not os.path.exists("data_files"):
+    os.mkdir("data_files")
 
 headers = {
    'accept': '*/*',
@@ -11,11 +11,11 @@ headers = {
    'referer': 'https://www.google.com/',
 }
 
-#Open file to write the html data to
-f = open("html_files/github_users.html", "w")
+# Open file to write the html data to
+f = open("data_files/github_users.html", "w")
 
 #Scrape the html data
-response = requests.get("http://45.56.117.197/index.html", headers=headers)
+response = requests.get("http://45.56.117.197/index.html/")
 
 #Convert html to readable format
 html = response.text
