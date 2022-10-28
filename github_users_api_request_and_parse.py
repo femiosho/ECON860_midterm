@@ -3,7 +3,7 @@ import json
 import pandas
 
 
-df = pandas.DataFrame(columns=['Avatar URL', 'URL', 'Number of Followers',
+df = pandas.DataFrame(columns=['User ID', 'Avatar URL', 'URL', 'Number of Followers',
 	'Following', 'Public Repository Count', 'Starred URL', 'Full Name', 
 	'Company', 'Blog', 'Location', 'Email', 'Hireable', 'Bio', 
 	'Starting Time', 'Last Update Time'])
@@ -49,7 +49,7 @@ for i in user_ID_column.index:
 		starting_time = json_text['created_at'] 
 		last_update_time = json_text['updated_at']
 
-		temp = pandas.DataFrame({"Avatar URL": [avatar_url],
+		temp = pandas.DataFrame({"User ID": [user_ID], "Avatar URL": [avatar_url],
 				"URL": [url], "Number of Followers": [follower_count],
 				"Following": [following_count], "Public Repository Count": [public_repos],
 				"Starred URL": [starred_url], "Full Name": [full_name],
@@ -61,6 +61,6 @@ for i in user_ID_column.index:
 		df = pandas.concat([df, temp], ignore_index=True)
 
 	except:
-		print("error")
+		print("Error obtaining user information")
 
 df.to_csv("data_files/github_users_api_dataset.csv", index=False)
