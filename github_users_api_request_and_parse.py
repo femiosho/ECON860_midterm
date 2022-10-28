@@ -4,8 +4,9 @@ import pandas
 
 
 df = pandas.DataFrame(columns=['Avatar URL', 'URL', 'Number of Followers',
-	'Starred URL', 'Full Name', 'Company', 'Blog', 'Location',
-	'Email', 'Hireable', 'Bio', 'Starting Time', 'Last Update Time'])
+	'Following', 'Public Repository Count', 'Starred URL', 'Full Name', 
+	'Company', 'Blog', 'Location', 'Email', 'Hireable', 'Bio', 
+	'Starting Time', 'Last Update Time'])
 
 # Assign personal access token file name to a variable
 file_name = "data_files/pat.csv"
@@ -35,6 +36,8 @@ for i in user_ID_column.index:
 		avatar_url = json_text['avatar_url']
 		url = json_text['url']
 		follower_count = int(json_text['followers'])
+		following_count = int(json_text['following'])
+		public_repos = int(json_text['public_repos'])
 		starred_url = json_text['starred_url'] 
 		full_name = json_text['name'] 
 		company = json_text['company'] 
@@ -48,6 +51,7 @@ for i in user_ID_column.index:
 
 		temp = pandas.DataFrame({"Avatar URL": [avatar_url],
 				"URL": [url], "Number of Followers": [follower_count],
+				"Following": [following_count], "Public Repository Count": [public_repos],
 				"Starred URL": [starred_url], "Full Name": [full_name],
 				"Company": [company], "Blog": [blog],
 				"Location": [location], "Email": [email], 
