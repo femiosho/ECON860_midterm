@@ -18,14 +18,18 @@ followers = sub_dataset['Number of Followers']
 following = sub_dataset['Following']
 public_repo = sub_dataset['Public Repository Count']
 
+logfollowers = numpy.log(followers)
+logfollowing = numpy.log(following)
+logpublic_repo = numpy.log(public_repo)
+
 # Plot
-plt.scatter(following, followers)
+plt.scatter(logfollowing, logfollowers)
 plt.title("Following Count and Followers Count")
 plt.xlabel("Number of Following")
 plt.ylabel("Number of Followers")
 plt.savefig('data_files/figure1.png')
 
-plt.scatter(public_repo, followers)
+plt.scatter(logpublic_repo, logfollowers)
 plt.title("Number of Repositories and Followers Count")
 plt.xlabel("Number of Repositories")
 plt.ylabel("Number of Followers")
