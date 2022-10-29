@@ -26,6 +26,7 @@ user_data = pandas.read_csv("data_files/github_users_dataset.csv")
 # Select the user ID column
 user_ID_column = user_data['Login ID']
 
+# For each user_ID
 for i in user_ID_column.index:
 	user_ID = user_ID_column[user_ID_column.index[i]]
 	response_text = github_session.get("https://api.github.com/users/" + user_ID)

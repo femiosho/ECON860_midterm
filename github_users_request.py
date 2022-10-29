@@ -21,6 +21,7 @@ response = requests.get("http://45.56.117.197/index.html/")
 html = response.text
 #print(html)
 
+# Write to file
 f.write(html)
 f.close()
 

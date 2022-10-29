@@ -11,21 +11,18 @@ def cleantext(text):
             text = text.replace(letters, " ")
     return text
 
-# if not os.path.exists("parsed_files"):
-# 	os.mkdir("parsed_files")
-
+# Create data columns
 df = pandas.DataFrame(columns=['Login ID', 'Repo Count', 
 	'Follower Count', 'Member Since'])
 
+# Open file
 file_name = "data_files/github_users.html"
-
 f =  open(file_name, "r")
 soup = BeautifulSoup(f.read(), "html.parser")
 f.close()
 
+# Find blocks of html containing required information
 users_list = soup.find("div", {"class": "text-gray-700 text-sm"})
-
-
 users_row_list = users_list.find_all("div", {"class": "grid grid-cols-4 gap-4"})
 
 for users_row in users_row_list:
@@ -63,6 +60,7 @@ for users_row in users_row_list:
 		"Follower Count": [follower],
 		"Member Since": [member]})
 	
+	# Concatenate current information to df
 	df = pandas.concat([df, temp], ignore_index=True)
 
 # Drop the first row because it is empty
